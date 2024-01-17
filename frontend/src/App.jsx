@@ -48,6 +48,22 @@ const App = () => {
           Add
         </button>
       </form>
+
+      <div className="display-todos">
+        <ul className="todos-list">
+          {todos.length > 0 ? (
+            todos.map((todo) => {
+              return (
+                <li className="todo-list__item" key={todo.id}>
+                  {todo.content}
+                </li>
+              );
+            })
+          ) : (
+            <p>No TODOs Yet</p>
+          )}
+        </ul>
+      </div>
     </>
   );
 };
