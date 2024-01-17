@@ -1,2 +1,5 @@
 # Project config files
 .prettierrc
+
+# React files and folders 
+frontend/package-lock.json
