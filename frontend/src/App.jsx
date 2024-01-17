@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [todos, setTodos] = useState([]);
+  const [newItem, setNewItem] = useState("");
+
+  useEffect(() => {
+    setTodos(JSON.parse(localStorage.getItem("todos")));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  const handleOnChange = (value) => {
+    setNewItem(value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const Todo = {
+      id: todos.length + 1,
+      content: newItem,
+      completed: false,
+    };
+
+    if (todos.length === 0) {
+      setTodos([Todo]);
+    }
+
+    setTodos([...todos, Todo]);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+      <form action="POST" className="todo-form">
+        <label htmlFor="New item">New item</label>
+        <input
+          type="text"
+          name="new-item"
+          className="todo-form__input"
+          autoFocus
+          placeholder="Add new item"
+          value={newItem}
+          onChange={(e) => handleOnChange(e.target.value)}
+        />
+        <button className="todo-form__submit" onClick={handleSubmit}>
+          Add
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      </form>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
