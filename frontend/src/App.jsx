@@ -80,9 +80,18 @@ const App = () => {
             todos.map((todo) => {
               return (
                 <>
-                  <li className="todo-list__item" key={todo.id}>
+                  <li
+                    className={
+                      todo.completed
+                        ? "todo-list__item todo-list__item--completed"
+                        : "todo-list__item"
+                    }
+                    key={todo.id}
+                  >
                     {todo.completed ? (
-                      <IoIosCheckmarkCircle />
+                      <IoIosCheckmarkCircle
+                        onClick={() => handleIsCompleted(todo)}
+                      />
                     ) : (
                       <FaRegCircle
                         className="todolist__item-is-completed"
@@ -90,7 +99,10 @@ const App = () => {
                       />
                     )}
                     {todo.content}
-                    <RiDeleteBinLine className="todolist__item-remove" />
+                    <RiDeleteBinLine
+                      className="todolist__item-remove"
+                      onclick
+                    />
                   </li>
                 </>
               );
