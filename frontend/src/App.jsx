@@ -34,6 +34,8 @@ const App = () => {
     }
 
     setTodosAndSave([...todos, NewTodo]);
+
+    setNewItem("");
   };
 
   const handleOnChange = (inputValue) => {
