@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { FaRegCircle } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { IoIosCheckmarkCircle } from "react-icons/io";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -21,7 +22,7 @@ const App = () => {
     e.preventDefault();
 
     if (!newItem) return;
-    
+
     const NewTodo = {
       id: crypto.randomUUID(),
       content: newItem,
@@ -39,7 +40,21 @@ const App = () => {
     setNewItem(inputValue);
   };
 
-  const handleIsCompleted = (todo) => {};
+  const handleIsCompleted = (todo) => {
+    const todosNotConcerned = todos.filter(
+      (todoItem) => todoItem.id !== todo.id
+    );
+
+    const concernedTodo = todos.find((todoItem) => todoItem.id === todo.id);
+
+    const updatedTodo = {
+      id: concernedTodo.id,
+      content: concernedTodo.content,
+      completed: !concernedTodo.completed,
+    };
+
+    setTodosAndSave([...todosNotConcerned, updatedTodo]);
+  };
 
   return (
     <>
@@ -66,10 +81,14 @@ const App = () => {
               return (
                 <>
                   <li className="todo-list__item" key={todo.id}>
-                    <FaRegCircle
-                      className="todolist__item-is-completed"
-                      onClick={() => handleIsCompleted(todo)}
-                    />
+                    {todo.completed ? (
+                      <IoIosCheckmarkCircle />
+                    ) : (
+                      <FaRegCircle
+                        className="todolist__item-is-completed"
+                        onClick={() => handleIsCompleted(todo)}
+                      />
+                    )}
                     {todo.content}
                     <RiDeleteBinLine className="todolist__item-remove" />
                   </li>
