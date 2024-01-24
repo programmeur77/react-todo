@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { FaRegCircle } from "react-icons/fa";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -37,7 +38,7 @@ const App = () => {
 
   return (
     <>
-      <form action="POST" className="todo-form">
+      <form action="POST" className="todo-form" onSubmit={handleSubmit}>
         <label htmlFor="New item">New item</label>
         <input
           type="text"
@@ -59,9 +60,10 @@ const App = () => {
             todos.map((todo) => {
               return (
                 <>
-                  <FaRegCircle className="todolist__item-is-completed" />
                   <li className="todo-list__item" key={todo.id}>
+                    <FaRegCircle className="todolist__item-is-completed" />
                     {todo.content}
+                    <RiDeleteBinLine className="todolist__item-remove" />
                   </li>
                 </>
               );
