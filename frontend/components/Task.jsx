@@ -4,6 +4,8 @@ import { FaRegCircle } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 
+import TodoForm from "./TodoForm";
+
 const Task = ({ todos, setTodosAndSave }) => {
   const [newItem, setNewItem] = useState("");
   const [completedTodoItems, setCompletedTodoItems] = useState([]);
@@ -56,22 +58,11 @@ const Task = ({ todos, setTodosAndSave }) => {
   };
   return (
     <>
-      <form action="POST" className="todo-form" onSubmit={handleSubmit}>
-        <label htmlFor="New item">New item</label>
-        <input
-          type="text"
-          name="new-item"
-          className="todo-form__input"
-          autoFocus
-          placeholder="Add new item"
-          value={newItem}
-          onChange={(e) => handleOnChange(e.target.value)}
-        />
-        <button className="todo-form__submit" onClick={handleSubmit}>
-          Add
-        </button>
-      </form>
-
+      <TodoForm
+        newItem={newItem}
+        handleOnChange={handleOnChange}
+        handleSubmit={handleSubmit}
+      />
       <div className="display-todos">
         <ul className="todos-list">
           {todos.length > 0 ? (
