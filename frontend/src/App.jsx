@@ -7,11 +7,18 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [newItem, setNewItem] = useState("");
+  const [completedTodoItems, setCompletedTodoItems] = useState([]);
+
+  const completedItems = todos.filter((todo) => todo.completed === true);
 
   useEffect(() => {
     localStorage.getItem("todos") &&
       setTodos(JSON.parse(localStorage.getItem("todos")));
   }, []);
+
+  useEffect(() => {
+    setCompletedTodoItems(todos.filter((todo) => todo.completed === true));
+  }, [todos]);
 
   const setTodosAndSave = (todos) => {
     setTodos(todos);
@@ -83,41 +90,76 @@ const App = () => {
       <div className="display-todos">
         <ul className="todos-list">
           {todos.length > 0 ? (
-            todos.map((todo) => {
-              return (
-                <>
-                  <li
-                    className={
-                      todo.completed
-                        ? "todo-list__item todo-list__item--completed"
-                        : "todo-list__item"
-                    }
-                    key={todo.id}
-                  >
-                    {todo.completed ? (
-                      <IoIosCheckmarkCircle
-                        className="todolist__item-completed-icon"
-                        onClick={() => handleIsCompleted(todo)}
+            todos
+              .filter((todo) => todo.completed === false)
+              .map((todo) => {
+                return (
+                  <>
+                    <li
+                      className={
+                        todo.completed
+                          ? "todo-list__item todo-list__item--completed"
+                          : "todo-list__item"
+                      }
+                      key={todo.id}
+                    >
+                      {todo.completed ? (
+                        <IoIosCheckmarkCircle
+                          className="todolist__item-completed-icon"
+                          onClick={() => handleIsCompleted(todo)}
+                        />
+                      ) : (
+                        <FaRegCircle
+                          className="todolist__item-complete-circle"
+                          onClick={() => handleIsCompleted(todo)}
+                        />
+                      )}
+                      {todo.content}
+                      <RiDeleteBinLine
+                        className="todolist__item-remove-icon"
+                        onClick={() => handleDeleteTodo(todo.id)}
                       />
-                    ) : (
-                      <FaRegCircle
-                        className="todolist__item-complete-circle"
-                        onClick={() => handleIsCompleted(todo)}
-                      />
-                    )}
-                    {todo.content}
-                    <RiDeleteBinLine
-                      className="todolist__item-remove-icon"
-                      onClick={() => handleDeleteTodo(todo.id)}
-                    />
-                  </li>
-                </>
-              );
-            })
+                    </li>
+                  </>
+                );
+              })
           ) : (
             <p>No TODOs Yet</p>
           )}
         </ul>
+
+        <section className="todo-list__completed-items">
+          <h1 className="completed-items__section-title">
+            Completed TODO items
+          </h1>
+          {completedTodoItems.length > 0 ? (
+            completedTodoItems.map((completedItem) => {
+              return (
+                <>
+                  <ul className="todo-list__all-completed-items">
+                    <li
+                      className="todo-list__item todo-list__item--completed"
+                      key={completedItem.id}
+                      onClick={() => handleIsCompleted(completedItem)}
+                    >
+                      <IoIosCheckmarkCircle
+                        className="todolist__item-complete-circle"
+                        onClick={() => handleIsCompleted()}
+                      />
+                      {completedItem.content}
+                      <RiDeleteBinLine
+                        className="todolist__item-remove-icon"
+                        onClick={() => handleDeleteTodo(todo.id)}
+                      />
+                    </li>
+                  </ul>
+                </>
+              );
+            })
+          ) : (
+            <p>No TODO completed for the moment</p>
+          )}
+        </section>
       </div>
     </>
   );
