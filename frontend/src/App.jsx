@@ -56,6 +56,10 @@ const App = () => {
     setTodosAndSave([...todosNotConcerned, updatedTodo]);
   };
 
+  const handleDeleteTodo = (todoId) => {
+    setTodosAndSave(todos.filter((todoItem) => todoItem.id !== todoId));
+  };
+
   return (
     <>
       <form action="POST" className="todo-form" onSubmit={handleSubmit}>
@@ -101,7 +105,7 @@ const App = () => {
                     {todo.content}
                     <RiDeleteBinLine
                       className="todolist__item-remove"
-                      onclick
+                      onClick={() => handleDeleteTodo(todo.id)}
                     />
                   </li>
                 </>
