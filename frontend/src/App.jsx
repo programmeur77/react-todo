@@ -19,8 +19,11 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!newItem) return;
+    
     const NewTodo = {
-      id: todos.length + 1,
+      id: crypto.randomUUID(),
       content: newItem,
       completed: false,
     };
@@ -35,6 +38,8 @@ const App = () => {
   const handleOnChange = (inputValue) => {
     setNewItem(inputValue);
   };
+
+  const handleIsCompleted = (todo) => {};
 
   return (
     <>
@@ -61,7 +66,10 @@ const App = () => {
               return (
                 <>
                   <li className="todo-list__item" key={todo.id}>
-                    <FaRegCircle className="todolist__item-is-completed" />
+                    <FaRegCircle
+                      className="todolist__item-is-completed"
+                      onClick={() => handleIsCompleted(todo)}
+                    />
                     {todo.content}
                     <RiDeleteBinLine className="todolist__item-remove" />
                   </li>
