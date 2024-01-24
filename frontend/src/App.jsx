@@ -96,17 +96,18 @@ const App = () => {
                   >
                     {todo.completed ? (
                       <IoIosCheckmarkCircle
+                        className="todolist__item-completed-icon"
                         onClick={() => handleIsCompleted(todo)}
                       />
                     ) : (
                       <FaRegCircle
-                        className="todolist__item-is-completed"
+                        className="todolist__item-complete-circle"
                         onClick={() => handleIsCompleted(todo)}
                       />
                     )}
                     {todo.content}
                     <RiDeleteBinLine
-                      className="todolist__item-remove"
+                      className="todolist__item-remove-icon"
                       onClick={() => handleDeleteTodo(todo.id)}
                     />
                   </li>
