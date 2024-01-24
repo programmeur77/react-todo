@@ -1,34 +1,38 @@
 import { useEffect, useState } from "react";
 
+import { FaRegCircle } from "react-icons/fa";
+
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [newItem, setNewItem] = useState("");
 
   useEffect(() => {
-    setTodos(JSON.parse(localStorage.getItem("todos")));
+    localStorage.getItem("todos") &&
+      setTodos(JSON.parse(localStorage.getItem("todos")));
   }, []);
 
-  useEffect(() => {
+  const setTodosAndSave = (todos) => {
+    setTodos(todos);
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-
-  const handleOnChange = (value) => {
-    setNewItem(value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const Todo = {
+    const NewTodo = {
       id: todos.length + 1,
       content: newItem,
       completed: false,
     };
 
     if (todos.length === 0) {
-      setTodos([Todo]);
+      setTodosAndSave([NewTodo]);
     }
 
-    setTodos([...todos, Todo]);
+    setTodosAndSave([...todos, NewTodo]);
+  };
+
+  const handleOnChange = (inputValue) => {
+    setNewItem(inputValue);
   };
 
   return (
@@ -54,9 +58,12 @@ const App = () => {
           {todos.length > 0 ? (
             todos.map((todo) => {
               return (
-                <li className="todo-list__item" key={todo.id}>
-                  {todo.content}
-                </li>
+                <>
+                  <FaRegCircle className="todolist__item-is-completed" />
+                  <li className="todo-list__item" key={todo.id}>
+                    {todo.content}
+                  </li>
+                </>
               );
             })
           ) : (
