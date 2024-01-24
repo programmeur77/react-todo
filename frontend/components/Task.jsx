@@ -12,26 +12,6 @@ const Task = ({ todos, setTodosAndSave }) => {
     setCompletedTodoItems(todos.filter((todo) => todo.completed === true));
   }, [todos]);
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-
-  //     if (!newItem) return;
-
-  //     const NewTodo = {
-  //       id: crypto.randomUUID(),
-  //       content: newItem,
-  //       completed: false,
-  //     };
-
-  //     if (todos.length === 0) {
-  //       setTodosAndSave([NewTodo]);
-  //     }
-
-  //     setTodosAndSave([...todos, NewTodo]);
-
-  //     setNewItem("");
-  //   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
