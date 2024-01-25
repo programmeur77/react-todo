@@ -18,7 +18,9 @@ const App = () => {
   return (
     <>
       <Header />
-      <Task todos={todos} setTodosAndSave={setTodosAndSave} />
+      <div className="todo-list-container">
+        <Task todos={todos} setTodosAndSave={setTodosAndSave} />
+      </div>
     </>
   );
 };
