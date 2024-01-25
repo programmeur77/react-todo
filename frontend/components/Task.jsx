@@ -5,6 +5,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 
 import TodoForm from "./TodoForm";
+import Todos from "./Todos";
 
 const Task = ({ todos, setTodosAndSave }) => {
   const [newItem, setNewItem] = useState("");
@@ -70,33 +71,11 @@ const Task = ({ todos, setTodosAndSave }) => {
               .filter((todo) => todo.completed === false)
               .map((todo) => {
                 return (
-                  <>
-                    <li
-                      className={
-                        todo.completed
-                          ? "todo-list__item todo-list__item--completed"
-                          : "todo-list__item"
-                      }
-                      key={todo.id}
-                    >
-                      {todo.completed ? (
-                        <IoIosCheckmarkCircle
-                          className="todolist__item-completed-icon"
-                          onClick={() => handleIsCompleted(todo)}
-                        />
-                      ) : (
-                        <FaRegCircle
-                          className="todolist__item-complete-circle"
-                          onClick={() => handleIsCompleted(todo)}
-                        />
-                      )}
-                      {todo.content}
-                      <RiDeleteBinLine
-                        className="todolist__item-remove-icon"
-                        onClick={() => handleDeleteTodo(todo.id)}
-                      />
-                    </li>
-                  </>
+                  <Todos
+                    todo={todo}
+                    handleIsCompleted={handleIsCompleted}
+                    handleDeleteTodo={handleDeleteTodo}
+                  />
                 );
               })
           ) : (
