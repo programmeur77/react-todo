@@ -67,54 +67,20 @@ const Task = ({ todos, setTodosAndSave }) => {
       <div className="display-todos">
         <ul className="todos-list">
           {todos.length > 0 ? (
-            todos
-              .filter((todo) => todo.completed === false)
-              .map((todo) => {
-                return (
-                  <Todos
-                    todo={todo}
-                    handleIsCompleted={handleIsCompleted}
-                    handleDeleteTodo={handleDeleteTodo}
-                  />
-                );
-              })
+            todos.map((todo) => {
+              return (
+                <Todos
+                  todo={todo}
+                  handleIsCompleted={handleIsCompleted}
+                  handleDeleteTodo={handleDeleteTodo}
+                  key={todo.id}
+                />
+              );
+            })
           ) : (
             <p>No TODOs Yet</p>
           )}
         </ul>
-
-        <section className="todo-list__completed-items">
-          <h1 className="completed-items__section-title">
-            Completed TODO items
-          </h1>
-          {completedTodoItems.length > 0 ? (
-            completedTodoItems.map((completedItem) => {
-              return (
-                <>
-                  <ul className="todo-list__all-completed-items">
-                    <li
-                      className="todo-list__item todo-list__item--completed"
-                      key={completedItem.id}
-                      onClick={() => handleIsCompleted(completedItem)}
-                    >
-                      <IoIosCheckmarkCircle
-                        className="todolist__item-complete-circle"
-                        onClick={() => handleIsCompleted()}
-                      />
-                      {completedItem.content}
-                      <RiDeleteBinLine
-                        className="todolist__item-remove-icon"
-                        onClick={() => handleDeleteTodo(todo.id)}
-                      />
-                    </li>
-                  </ul>
-                </>
-              );
-            })
-          ) : (
-            <p>No TODO completed for the moment</p>
-          )}
-        </section>
       </div>
     </>
   );
