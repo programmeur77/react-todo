@@ -1,5 +1,3 @@
-import "../src/style.form.css";
-
 const TodoForm = ({ newItem, handleOnChange, handleSubmit }) => {
   return (
     <form action="POST" className="todo-form" onSubmit={handleSubmit}>
