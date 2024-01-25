@@ -1,0 +1,15 @@
+@import "./utils/variables";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100dvh;
+  width: 100dvw;
+  font-family: $main-font-family;
+  font-weight: $body-font-weight;
+  background-color: $background-color;
+}
