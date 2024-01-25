@@ -9,7 +9,7 @@ body {
   height: 100dvh;
 
   display: grid;
-  place-items: center;
+  justify-items: center;
 }
 
 .todolist__item-complete-circle:hover,
