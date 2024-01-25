@@ -3,3 +3,5 @@
 
 # React files and folders 
 frontend/package-lock.json
+# Local Netlify folder
+.netlify
