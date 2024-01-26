@@ -2,19 +2,15 @@
 
 .header {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
   gap: 0.3rem;
   padding: 10px;
   color: $header-font-color;
-  place-items: baseline;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 1rem;
 
   &__logo {
-    grid-column: 1 / 1;
     font-size: 1.5rem;
-  }
-
-  &__app-name {
-    grid-column: 2 / 2;
   }
 }
