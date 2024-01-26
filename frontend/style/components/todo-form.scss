@@ -3,10 +3,14 @@
 .todo-form {
   height: fit-content;
   margin-bottom: 1.5rem;
+
+  &-wrapper {
+    width: 100%;
+    position: relative;
+  }
   &__input {
     width: 100%;
     padding: 15px;
-    position: relative;
     caret-color: $header-font-color;
     font-size: 1.3rem;
 
@@ -18,14 +22,17 @@
 
   &__submit-btn {
     width: fit-content;
-    padding: 10px;
     position: absolute;
-    right: 110px;
-    top: 110px;
+    right: 20px;
+    top: 20px;
     border: none;
-    background-color: $header-font-color;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 1rem;
+    background: transparent;
+    font-size: 1.2rem;
+    color: $header-font-color;
+
+    &:hover {
+      cursor: pointer;
+      color: darken($header-font-color, 10%);
+    }
   }
 }
