@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Task from "./../components/Task";
 import Header from "./../components/Header";
 
+import "./../style/components/app.scss";
+
 const App = () => {
   const [todos, setTodos] = useState([]);
 
