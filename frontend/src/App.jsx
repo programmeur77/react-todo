@@ -4,6 +4,8 @@ import Header from "./../components/Header";
 
 import "./../style/components/app.scss";
 
+const DOCUMENT_TITLE = "Todo App";
+
 const App = () => {
   const [todos, setTodos] = useState([]);
 
@@ -13,6 +15,8 @@ const App = () => {
   };
 
   useEffect(() => {
+    document.title = DOCUMENT_TITLE;
+
     localStorage.getItem("todos") &&
       setTodos(JSON.parse(localStorage.getItem("todos")));
   }, []);
