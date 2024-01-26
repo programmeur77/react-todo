@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
 
-import { FaRegCircle } from "react-icons/fa";
-import { RiDeleteBinLine } from "react-icons/ri";
-import { IoIosCheckmarkCircle } from "react-icons/io";
-
 import TodoForm from "./TodoForm";
 import Todos from "./Todos";
 
