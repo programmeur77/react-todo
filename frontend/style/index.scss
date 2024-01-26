@@ -12,4 +12,7 @@ body {
   font-family: $main-font-family;
   font-weight: $body-font-weight;
   background-color: $background-color;
+  display: grid;
+  justify-items: center;
+  gap: 1.5rem;
 }
