@@ -1,0 +1,30 @@
+@import "./../utils/variables";
+
+.todo-form {
+  height: fit-content;
+  &__input {
+    width: 100%;
+    padding: 15px;
+    position: relative;
+    caret-color: $header-font-color;
+    font-size: 1.3rem;
+
+    &::placeholder {
+      font-family: $main-font-family;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__submit-btn {
+    width: fit-content;
+    padding: 10px;
+    position: absolute;
+    right: 110px;
+    top: 110px;
+    border: none;
+    background-color: $header-font-color;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1rem;
+  }
+}
