@@ -1,0 +1,51 @@
+@import "./../utils/variables";
+
+.todo-list {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.3rem;
+
+  &__item {
+    padding: 10px;
+    display: flex;
+    gap: 1.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    align-items: center;
+    position: relative;
+
+    &::marker {
+      content: "";
+    }
+
+    &--completed {
+      text-decoration: line-through;
+    }
+
+    &-completed-icon {
+      color: $header-font-color;
+      font-size: 1.5rem;
+      align-self: baseline;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &-circle-icon {
+      color: $header-font-color;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &-remove-icon {
+      color: $header-font-color;
+      font-size: 1.5rem;
+      position: absolute;
+      right: 10px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
